@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organo - Villa Snag List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Organo - Villa Snag List</h2>
+        <form id="snagForm">
+            <input type="text" id="villaNumber" placeholder="Villa Number" required>
+            <textarea id="snagDescription" placeholder="Describe the snag" required></textarea>
+            <button type="submit">Add Snag</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Villa Number</th>
+                    <th>Snag Description</th>
+                </tr>
+            </thead>
+            <tbody id="snagList"></tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('snagForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const villaNumber = document.getElementById('villaNumber').value;
+            const snagDescription = document.getElementById('snagDescription').value;
+            
+            if (villaNumber && snagDescription) {
+                const table = document.getElementById('snagList');
+                const row = table.insertRow();
+                row.insertCell(0).innerText = villaNumber;
+                row.insertCell(1).innerText = snagDescription;
+                
+                document.getElementById('villaNumber').value = '';
+                document.getElementById('snagDescription').value = '';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
